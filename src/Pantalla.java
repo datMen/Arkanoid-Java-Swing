@@ -1,42 +1,43 @@
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.geom.Ellipse2D;
 
-public class Pantalla {
+@SuppressWarnings("serial")
+public class Pantalla extends JPanel {
 
-	private JFrame frame;
+	Ball ball = new Ball(this);
+	Keyboard keyboard = new Keyboard(this);
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Pantalla window = new Pantalla();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
+	private void move() {
+		ball.move();
 	}
 
-	/**
-	 * Create the application.
-	 */
-	public Pantalla() {
-		initialize();
+	@Override
+	public void paint(Graphics g) {
+		super.paint(g);
+		Graphics2D g2d = (Graphics2D) g;
+		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+				RenderingHints.VALUE_ANTIALIAS_ON);
+		ball.paint(g2d);
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+	public static void main(String[] args) throws InterruptedException {
+		JFrame frame = new JFrame("Arkanoid");
+		Pantalla game = new Pantalla();
+		frame.add(game);
+		frame.setSize(300, 400);
+		frame.setVisible(true);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		while (true) {
+			game.move();
+			game.repaint();
+			Thread.sleep(10);
+		}
 	}
-
 }

@@ -11,6 +11,7 @@ import java.awt.geom.Ellipse2D;
 public class Pantalla extends JPanel {
 
 	Ball ball = new Ball(this);
+	Bar bar = new Bar(this);
 	Keyboard keyboard = new Keyboard(this);
 
 	private void move() {
@@ -24,6 +25,7 @@ public class Pantalla extends JPanel {
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
 		ball.paint(g2d);
+		bar.paint(g2d);
 	}
 
 	public static void main(String[] args) throws InterruptedException {

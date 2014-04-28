@@ -13,6 +13,7 @@ public class Pantalla extends JPanel {
 
 	Ball ball = new Ball(this);
 	Bar bar = new Bar(this);
+	Bricks brick = new Bricks(this);
 	Keyboard keyboard = new Keyboard(this);
 
 	private void move() {
@@ -46,7 +47,7 @@ public class Pantalla extends JPanel {
 		while (true) {
 			game.move();
 			game.repaint();
-			Thread.sleep(10);
+			Thread.sleep(8);
 		}
 	}
 }

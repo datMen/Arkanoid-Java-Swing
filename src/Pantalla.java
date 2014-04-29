@@ -1,15 +1,17 @@
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-import java.awt.geom.Ellipse2D;
-
+// Base from: http://www.edu4java.com/en/game/game1.html
 @SuppressWarnings("serial")
 public class Pantalla extends JPanel {
+	public static final int WIDTH = 300;
+	public static final int HEIGHT = 400;
+	public int speed = 8;
 
 	Ball ball = new Ball(this);
 	Bar bar = new Bar(this);
@@ -35,19 +37,20 @@ public class Pantalla extends JPanel {
 		JOptionPane.showMessageDialog(this, "Game Over", "Game Over", JOptionPane.YES_NO_OPTION);
 		System.exit(ABORT);
 	}
-
+	
 	public static void main(String[] args) throws InterruptedException {
 		JFrame frame = new JFrame("Arkanoid");
 		Pantalla game = new Pantalla();
 		frame.add(game);
-		frame.setSize(300, 400);
+		frame.setSize(WIDTH, HEIGHT);
 		frame.setVisible(true);
+		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		while (true) {
 			game.move();
 			game.repaint();
-			Thread.sleep(8);
+			Thread.sleep(game.speed);
 		}
 	}
 }

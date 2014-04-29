@@ -3,6 +3,8 @@ import java.awt.event.KeyListener;
 
 public class Keyboard {
 	private Pantalla game;
+	public static final int LEFT = 37;
+	public static final int RIGHT = 39;
 	public Keyboard(Pantalla game) {
 		KeyListener listener = new MyKeyListener();
 		game.addKeyListener(listener);
@@ -17,11 +19,11 @@ public class Keyboard {
 
 		@Override
 		public void keyPressed(KeyEvent e) {
-			if (KeyEvent.getKeyText(e.getKeyCode()) == "Izquierda") {
-				game.bar.move("Izquierda");
+			if (e.getKeyCode() == LEFT) {
+				game.bar.move(LEFT);
 			}
-			else if (KeyEvent.getKeyText(e.getKeyCode()) == "Derecha") {
-				game.bar.move("Derecha");
+			else if (e.getKeyCode() == RIGHT) {
+				game.bar.move(RIGHT);
 			}
 		}
 

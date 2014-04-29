@@ -13,15 +13,17 @@ public class Bar {
 	}
 
 
-	void move(String direction) {
-		if (direction == "Izquierda") {
-			if (x > 5) {
-				x -= 10;
+	void move(int direction) {
+		int width_margin = 5;
+		int move_speed = 10;
+		if (direction == Keyboard.LEFT) {
+			if (x > width_margin) {
+				x -= move_speed;
 			}
 		}
-		else if (direction == "Derecha") {
-			if (x < game.getWidth()-55) {
-				x += 10;
+		else if (direction == Keyboard.RIGHT) {
+			if (x < game.getWidth()-(WIDTH+width_margin)) {
+				x += move_speed;
 			}
 		}
 

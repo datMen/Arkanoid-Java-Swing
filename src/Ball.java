@@ -50,6 +50,9 @@ public class Ball {
 			}
 			if (Bricks.bricks.get(brick).hits == 0) {
 				Bricks.bricks.remove(brick);
+				if (Bricks.bricks.size() == 0) {
+					game.text.start_label.setText("Congrats, You Won!");
+				}
 			}
 			else {
 				game.brick.updateHits(brick);

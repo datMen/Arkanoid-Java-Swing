@@ -6,20 +6,21 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+
 // Base from: http://www.edu4java.com/en/game/game1.html
 @SuppressWarnings("serial")
 public class Pantalla extends JPanel {
-	public Pantalla() {
-	}
 	public static final int WIDTH = 300;
 	public static final int HEIGHT = 400;
 	public int speed = 8;
 	public static boolean start_game = true;
+	public Pantalla() {}
 
 	Ball ball = new Ball(this);
 	Bar bar = new Bar(this);
 	Bricks brick = new Bricks(this);
 	ListenersHandler listeners = new ListenersHandler(this);
+	Text text = new Text(this);
 
 	private void move() {
 		ball.move();
@@ -52,6 +53,7 @@ public class Pantalla extends JPanel {
 				game.ball.xa = -1;
 			}
 			start_game = false;
+			game.text.start_label.setText("");
 		}
 	}
 	

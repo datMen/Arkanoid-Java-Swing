@@ -107,6 +107,26 @@ public class Bricks {
 		}
 	}
 	
+	void updateHits(int brick) {
+		int hits = bricks.get(brick).hits;
+		if (hits == 1) {
+			bricks.get(brick).color = Color.GREEN;
+		}
+		else if (hits == 2) {
+			bricks.get(brick).color = Color.YELLOW;
+		}
+		else if (hits == 3) {
+			bricks.get(brick).color = Color.ORANGE;
+		}
+		else if (hits == 4) {
+			bricks.get(brick).color = Color.RED;
+		}
+		else if (hits == 5) {
+			bricks.get(brick).color = Color.BLACK;
+		}
+		bricks.get(brick).hits -= 1;
+	}
+	
 	public void paint(Graphics2D g) {
 		for (int i = 0; i < brickRows.size(); i++) {
 			for (int j = 0; j < brickRows.get(i).size(); j++) {

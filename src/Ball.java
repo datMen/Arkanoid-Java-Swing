@@ -52,7 +52,7 @@ public class Ball {
 				Bricks.bricks.remove(brick);
 			}
 			else {
-				Bricks.bricks.get(brick).hits -= 1;
+				game.brick.updateHits(brick);
 			}
 		}
 		x = x + xa;

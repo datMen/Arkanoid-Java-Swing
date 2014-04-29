@@ -67,6 +67,35 @@ public class Bricks {
 			brickRows.add(bricks);
 		}
 	}
+	
+	void addBricks() {
+		if (brickRows.size() > 0) {
+			int x = bricks.get(bricks.size()-1).x+5;
+			int border_margin = ((game.getWidth()-5)-bricks.get(bricks.size()-1).width-bricks.get(bricks.size()-1).x);
+			if (border_margin > 20) {
+				for (int i = 0; i < brickRows.size(); i++) {
+					Brick brick = new Brick();
+					brick.x += x;
+					brick.y += i*20;
+					bricksRowConfig(brick, i);
+					brickRows.get(i).add(brick);
+				}
+			}
+		}
+		else if (brickRows.size() == 0) {
+			createBricks();
+		}
+	}
+	
+	void remBricks() {
+		if (brickRows.size() > 0) {
+			int border_margin = ((game.getWidth()-5)-bricks.get(bricks.size()-1).width-bricks.get(bricks.size()-1).x);
+			if (border_margin < 20) {
+				bricks.remove(bricks.size()-1);
+				for (int i = 0; i < brickRows.size(); i++) {
+					brickRows.get(i).remove(brickRows.get(i).size()-1);
+				}
+			}
 		}
 	}
 	

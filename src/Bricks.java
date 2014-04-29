@@ -7,6 +7,7 @@ public class Bricks {
 	public static ArrayList<ArrayList<Brick>> brickRows = new ArrayList<ArrayList<Brick>>();
 	public static ArrayList<Brick> bricks = new ArrayList<Brick>();
 	private int row_num = 4;
+	private int col_counter = 1;
 	
 	private Pantalla game;
 	public Bricks(Pantalla game) {
@@ -76,10 +77,17 @@ public class Bricks {
 				for (int i = 0; i < brickRows.size(); i++) {
 					Brick brick = new Brick();
 					brick.x += x;
-					brick.y += i*20;
+					brick.y += i*15;
 					bricksRowConfig(brick, i);
-					brickRows.get(i).add(brick);
+					System.out.println(col_counter%3);
+					if (col_counter%3 != 0) {
+						if (col_counter%3 == 1) {
+							brick.x += 15;
+						}
+						brickRows.get(i).add(brick);
+					}
 				}
+				col_counter++;
 			}
 		}
 		else if (brickRows.size() == 0) {

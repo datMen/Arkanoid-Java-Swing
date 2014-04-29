@@ -4,10 +4,10 @@ import java.awt.Rectangle;
 
 public class Ball {
 	private static final int DIAMETER = 10;
-	int x = 0;
-	int y = 250;
-	int xa = 1;
-	int ya = -1;
+	int x = 133;
+	int y = 325;
+	int xa = 0;
+	int ya = 0;
 	int brick;
 	int sxa = 1;
 	private Pantalla game;
@@ -40,20 +40,6 @@ public class Ball {
 					ya = 1;
 				}
 			}
-			else if (ball_position == 2 || ball_position == 18) {
-				if (ya == 1) {
-					ya = -1;
-				}
-				else if (ya == -1) {
-					ya = 1;
-				}
-				if (xa == 1) {
-					xa = -1;
-				}
-				else if (xa == -1) {
-					xa = 1;
-				}
-			}
 			else {
 				if (xa == 1) {
 					xa = -1;
@@ -62,8 +48,6 @@ public class Ball {
 					xa = 1;
 				}
 			}
-			System.out.println("brick Y:"+ (Bricks.bricks.get(brick).getTopY()+10));
-			System.out.println((y+DIAMETER)-(Bricks.bricks.get(brick).getTopY()+10));
 			if (Bricks.bricks.get(brick).hits == 0) {
 				Bricks.bricks.remove(brick);
 			}

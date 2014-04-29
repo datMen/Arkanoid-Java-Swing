@@ -9,9 +9,12 @@ import javax.swing.JPanel;
 // Base from: http://www.edu4java.com/en/game/game1.html
 @SuppressWarnings("serial")
 public class Pantalla extends JPanel {
+	public Pantalla() {
+	}
 	public static final int WIDTH = 300;
 	public static final int HEIGHT = 400;
 	public int speed = 8;
+	public static boolean start_game = true;
 
 	Ball ball = new Ball(this);
 	Bar bar = new Bar(this);
@@ -38,10 +41,24 @@ public class Pantalla extends JPanel {
 		System.exit(ABORT);
 	}
 	
+	public static void startGame(Pantalla game) {
+		if (start_game) {
+			int xdireccion = (int) Math.floor(Math.random()*2+1);
+			game.ball.ya = -1;
+			if (xdireccion == 1) {
+				game.ball.xa = 1;
+			}
+			else if (xdireccion == 2) {
+				game.ball.xa = -1;
+			}
+			start_game = false;
+		}
+	}
+	
 	public static void main(String[] args) throws InterruptedException {
 		JFrame frame = new JFrame("Arkanoid");
 		Pantalla game = new Pantalla();
-		frame.add(game);
+		frame.getContentPane().add(game);
 		frame.setSize(WIDTH, HEIGHT);
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);

@@ -78,7 +78,7 @@ public class ListenersHandler {
 
 		@Override
 		public void mouseClicked(MouseEvent e) {
-			
+			Pantalla.startGame(game);
 		}
 
 		@Override

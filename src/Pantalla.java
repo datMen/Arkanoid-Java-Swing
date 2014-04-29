@@ -14,7 +14,7 @@ public class Pantalla extends JPanel {
 	Ball ball = new Ball(this);
 	Bar bar = new Bar(this);
 	Bricks brick = new Bricks(this);
-	Keyboard keyboard = new Keyboard(this);
+	ListenersHandler listeners = new ListenersHandler(this);
 
 	private void move() {
 		ball.move();

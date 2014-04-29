@@ -4,11 +4,12 @@ import java.awt.Rectangle;
 
 public class Ball {
 	private static final int DIAMETER = 10;
-	int x = 100;
-	int y = 100;
+	int x = 0;
+	int y = 250;
 	int xa = 1;
-	int ya = 1;
+	int ya = -1;
 	int brick;
+	int sxa = 1;
 	private Pantalla game;
 
 	public Ball(Pantalla game) {
@@ -25,25 +26,93 @@ public class Ball {
 		else if (y + ya > game.getHeight() - DIAMETER)
 			game.gameOver();
 		else if (collision()){
-			System.out.println(game.bar.getBounds().intersection(getBounds()));
 			ya = -1;
+			xa = sxa;
 			y = game.bar.getTopY() - DIAMETER + 10;
 		}
 		else if (brickCollision()){
-			if (ya == 1) {
-				ya = -1;
+			int ball_position = (y+DIAMETER)-(Bricks.bricks.get(brick).getTopY()+10);
+			if (ball_position == 1 || ball_position == 19) {
+				if (ya == 1) {
+					ya = -1;
+				}
+				else if (ya == -1) {
+					ya = 1;
+				}
 			}
-			else if (ya == -1) {
-				ya = 1;
+			else if (ball_position == 2 || ball_position == 18) {
+				if (ya == 1) {
+					ya = -1;
+				}
+				else if (ya == -1) {
+					ya = 1;
+				}
+				if (xa == 1) {
+					xa = -1;
+				}
+				else if (xa == -1) {
+					xa = 1;
+				}
 			}
-			Bricks.bricks.remove(brick);
+			else {
+				if (xa == 1) {
+					xa = -1;
+				}
+				else if (xa == -1) {
+					xa = 1;
+				}
+			}
+			System.out.println("brick Y:"+ (Bricks.bricks.get(brick).getTopY()+10));
+			System.out.println((y+DIAMETER)-(Bricks.bricks.get(brick).getTopY()+10));
+			if (Bricks.bricks.get(brick).hits == 0) {
+				Bricks.bricks.remove(brick);
+			}
+			else {
+				Bricks.bricks.get(brick).hits -= 1;
+			}
 		}
 		x = x + xa;
 		y = y + ya;
 	}
 
 	private boolean collision() {
-		return game.bar.getBounds().intersects(getBounds());
+		if (game.bar.getBounds().intersects(getBounds())) {
+			sxa = xa;
+			return true;
+		}
+		else if (game.bar.getLeftBounds().intersects(getBounds())) {
+			if (xa == 1) {
+				sxa = -1;
+				if (game.speed < 10) {
+					game.speed += 1;
+				}
+			}
+			else if (xa == -1) {
+				sxa = -1;
+				if (game.speed > 1) {
+					game.speed -= 1;
+				}
+			}
+			return true;
+		}
+		else if (game.bar.getRightBounds().intersects(getBounds())) {
+			if (xa == -1) {
+				sxa = 1;
+				if (game.speed < 10) {
+					game.speed += 1;
+				}
+			}
+			else if (xa == 1) {
+				sxa = 1;
+				if (game.speed > 1) {
+					game.speed -= 1;
+				}
+			}
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	
 	private boolean brickCollision() {

@@ -1,5 +1,3 @@
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
@@ -13,11 +11,9 @@ public class ListenersHandler {
 	int old_width = 0;
 	public ListenersHandler(Pantalla game) {
 		KeyListener listener = new MyKeyListener();
-		ComponentListener clistener = new MyComponentListener();
 		MouseMotionListener mmlistener = new MyMouseMotionListener();
 		MouseListener mlistener = new MyMouseListener();
 		game.addKeyListener(listener);
-		game.addComponentListener(clistener);
 		game.addMouseMotionListener(mmlistener);
 		game.addMouseListener(mlistener);
 		game.setFocusable(true);
@@ -41,28 +37,6 @@ public class ListenersHandler {
 		@Override
 		public void keyReleased(KeyEvent e) {}
 	}
-	
-	public class MyComponentListener implements ComponentListener {
-		@Override
-	    public void componentResized(ComponentEvent e) {
-	        if (e.getID() == 101) {
-	        	if (game.getWidth() > old_width) {
-	        		game.brick.addBricks();
-	        	}
-	        	else if (game.getWidth() < old_width) {
-	        		game.brick.remBricks();
-	        	}
-	        	old_width = game.getWidth();
-	        }
-	    }
-		@Override
-		public void componentHidden(ComponentEvent e) {}
-		@Override
-		public void componentMoved(ComponentEvent e) {}
-		@Override
-		public void componentShown(ComponentEvent e) {}
-	}
-	
 	public class MyMouseMotionListener implements MouseMotionListener {
 
 		@Override

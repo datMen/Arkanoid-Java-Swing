@@ -10,8 +10,8 @@ import javax.swing.JPanel;
 // Base from: http://www.edu4java.com/en/game/game1.html
 @SuppressWarnings("serial")
 public class Pantalla extends JPanel {
-	public static final int WIDTH = 300;
-	public static final int HEIGHT = 400;
+	public static final int WIDTH = 410;
+	public static final int HEIGHT = 500;
 	public int speed = 8;
 	public static boolean start_game = true;
 	public Pantalla() {}

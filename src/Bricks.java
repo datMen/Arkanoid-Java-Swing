@@ -7,6 +7,7 @@ public class Bricks {
 	public static ArrayList<ArrayList<Brick>> brickRows = new ArrayList<ArrayList<Brick>>();
 	public static ArrayList<Brick> bricks = new ArrayList<Brick>();
 	private int row_num = 4;
+	public int reward_rand_num = 0;
 	
 	private Pantalla game;
 	public Bricks(Pantalla game) {
@@ -21,6 +22,15 @@ public class Bricks {
 		static final int height = 10;
 		Color color = Color.BLACK;
 		int hits = 1;
+		String reward_type = "";
+		int reward_num = (int) Math.floor(Math.random()*hits+1);
+		
+		public boolean hasReward() {
+			if (reward_type != "" && reward_num == hits) {
+				return true;
+			}
+			return false;
+		}
 		
 		public int getTopY() {
 			return y - height;
@@ -66,6 +76,8 @@ public class Bricks {
 				}
 			}
 			brickRows.add(bricks);
+			reward_rand_num = (int) Math.floor(Math.random()*(bricks.size()-1)+1);
+			bricks.get(reward_rand_num).reward_type = "UltraBall";
 		}
 	}
 	
@@ -97,6 +109,4 @@ public class Bricks {
 			}
 		}
 	}
-	
-
 }

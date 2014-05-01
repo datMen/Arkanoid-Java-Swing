@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
@@ -11,6 +12,8 @@ public class Ball {
 	int brick;
 	int sxa = 1;
 	private Pantalla game;
+	static boolean ultraballmode = false;
+	static int ultraball_color = 0;
 
 	public Ball(Pantalla game) {
 		this.game = game;
@@ -107,6 +110,9 @@ public class Ball {
 		for (int i = 0; i < Bricks.bricks.size(); i++) {
 			if (Bricks.bricks.get(i).getBounds().intersects(getBounds())) {
 				brick = i;
+				if (Bricks.bricks.get(i).hasReward()) {
+					game.rewards.createReward(Bricks.bricks.get(i).reward_type, Bricks.bricks.get(i).x-3, Bricks.bricks.get(i).y);
+				}
 				return Bricks.bricks.get(i).getBounds().intersects(getBounds());
 			}
 		}
@@ -114,6 +120,21 @@ public class Ball {
 	}
 
 	public void paint(Graphics2D g) {
+		g.setColor(Color.WHITE);
+		if (ultraballmode) {
+			if (ultraball_color == 0) {
+				g.setColor(Color.RED);
+				ultraball_color++;
+			}
+			else if (ultraball_color == 1) {
+				g.setColor(Color.YELLOW);
+				ultraball_color++;
+			}
+			else if (ultraball_color == 2) {
+				g.setColor(Color.GREEN);
+				ultraball_color = 0;
+			}
+		}
 		g.fillOval(x, y, 10, 10);
 	}
 	

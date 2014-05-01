@@ -7,18 +7,18 @@ public class Bricks {
 	public static ArrayList<ArrayList<Brick>> brickRows = new ArrayList<ArrayList<Brick>>();
 	public static ArrayList<Brick> bricks = new ArrayList<Brick>();
 	private int row_num = 4;
-	private int col_counter = 1;
 	
 	private Pantalla game;
 	public Bricks(Pantalla game) {
 		this.game = game;
+		createLevel();
 	}
 	
 	public class Brick {
 		int x = 15;
 		int y = 50;
-		int width = 15;
-		int height = 10;
+		static final int width = 15;
+		static final int height = 10;
 		Color color = Color.BLACK;
 		int hits = 1;
 		
@@ -33,15 +33,15 @@ public class Bricks {
 	
 	void bricksRowConfig(Brick brick, int i) {
 		if (i == 0) {
-			brick.color = Color.BLACK;
+			brick.color = Color.DARK_GRAY;
 			brick.hits = 4;
 		}
 		else if (i == 1) {
-			brick.color = Color.RED;
+			brick.color = Color.GRAY;
 			brick.hits = 3;
 		}
 		else if (i == 2) {
-			brick.color = Color.ORANGE;
+			brick.color = Color.LIGHT_GRAY;
 			brick.hits = 2;
 		}
 		else if (i == 3) {
@@ -54,56 +54,18 @@ public class Bricks {
 		}
 	}
 	
-	void createBricks() {
+	void createLevel() {
 		for (int i = 0; i <= row_num; i++) {
-			for (int j = 0; j <= 12; j++) {
+			for (int j = 0; j <= 17; j++) {
 				Brick brick = new Brick();
 				brick.x += j*20;
 				brick.y = i*15+50;
 				bricksRowConfig(brick, i);
-				if (j % 3 != 0) {
+				if (j % 2 != 0) {
 					bricks.add(brick);
 				}
 			}
 			brickRows.add(bricks);
-		}
-	}
-	
-	void addBricks() {
-		if (brickRows.size() > 0) {
-			int x = bricks.get(bricks.size()-1).x+5;
-			int border_margin = ((game.getWidth()-5)-bricks.get(bricks.size()-1).width-bricks.get(bricks.size()-1).x);
-			if (border_margin > 20) {
-				for (int i = 0; i < brickRows.size(); i++) {
-					Brick brick = new Brick();
-					brick.x += x;
-					brick.y += i*15;
-					bricksRowConfig(brick, i);
-					System.out.println(col_counter%3);
-					if (col_counter%3 != 0) {
-						if (col_counter%3 == 1) {
-							brick.x += 15;
-						}
-						brickRows.get(i).add(brick);
-					}
-				}
-				col_counter++;
-			}
-		}
-		else if (brickRows.size() == 0) {
-			createBricks();
-		}
-	}
-	
-	void remBricks() {
-		if (brickRows.size() > 0) {
-			int border_margin = ((game.getWidth()-5)-bricks.get(bricks.size()-1).width-bricks.get(bricks.size()-1).x);
-			if (border_margin < 20) {
-				bricks.remove(bricks.size()-1);
-				for (int i = 0; i < brickRows.size(); i++) {
-					brickRows.get(i).remove(brickRows.get(i).size()-1);
-				}
-			}
 		}
 	}
 	
@@ -116,13 +78,13 @@ public class Bricks {
 			bricks.get(brick).color = Color.YELLOW;
 		}
 		else if (hits == 3) {
-			bricks.get(brick).color = Color.ORANGE;
+			bricks.get(brick).color = Color.LIGHT_GRAY;
 		}
 		else if (hits == 4) {
-			bricks.get(brick).color = Color.RED;
+			bricks.get(brick).color = Color.GRAY;
 		}
 		else if (hits == 5) {
-			bricks.get(brick).color = Color.BLACK;
+			bricks.get(brick).color = Color.DARK_GRAY;
 		}
 		bricks.get(brick).hits -= 1;
 	}

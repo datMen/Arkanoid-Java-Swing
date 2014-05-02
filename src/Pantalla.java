@@ -47,6 +47,7 @@ public class Pantalla extends JPanel {
 		bar.paint(g2d);
 		brick.paint(g2d);
 		rewards.paint(g2d);
+		text.paint(g2d);
 	}
 	
 	public void gameOver() {

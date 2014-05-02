@@ -5,12 +5,13 @@ import java.awt.Rectangle;
 
 public class Ball {
 	private static final int DIAMETER = 10;
-	int x = 205;
-	int y = 400;
+	static int default_x = 205;
+	static int default_y = 400;
+	int x = default_x;
+	int y = default_y;
 	int xa = 0;
 	int ya = 0;
 	int brick;
-	int sxa = 1;
 	private Pantalla game;
 	static boolean ultraballmode = false;
 	static int ultraball_color = 0;
@@ -26,8 +27,13 @@ public class Ball {
 			xa = -xa;
 		else if (y + ya < Text.menu_bar_height)
 			ya = 1;
-		else if (y + ya > game.getHeight() - DIAMETER)
-			game.gameOver();
+		else if (y + ya > game.getHeight() - DIAMETER) {
+			if (Bar.lives == 0)
+				game.gameOver();
+			else if (Bar.lives > 0) {
+				Bar.looseLive(game);
+			}
+		}
 		else if (collision()){
 			ya = -1;
 			y = game.bar.getTopY() - DIAMETER + 10;

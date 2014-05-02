@@ -6,7 +6,9 @@ public class Bar {
 	public static final int Y = 40;
 	private static final int WIDTH = 27;
 	private static final int HEIGHT = 10;
-	public int x = 197;
+	public static int lives = 3;
+	public static int default_x = 197;
+	public int x = default_x;
 	int move_speed = 10;
 	private Pantalla game;
 
@@ -28,6 +30,18 @@ public class Bar {
 			}
 		}
 
+	}
+	
+	public static void looseLive(Pantalla game) {
+		lives--;
+		Pantalla.start_game = true;
+		game.ball.xa = 0;
+		game.ball.ya = 0;
+		game.ball.x = Ball.default_x;
+		game.ball.y = Ball.default_y;
+		game.bar.x = Bar.default_x;
+		game.text.lives_label.setText(""+lives);
+		game.text.start_label.setText("Lives: "+lives);
 	}
 
 	public void paint(Graphics2D g) {

@@ -8,6 +8,7 @@ public class Bricks {
 	public static ArrayList<Brick> bricks = new ArrayList<Brick>();
 	private int row_num = 4;
 	public int reward_rand_num = 0;
+	public int level_counter = 0;
 	
 	private Pantalla game;
 	public Bricks(Pantalla game) {
@@ -65,7 +66,18 @@ public class Bricks {
 	}
 	
 	void createLevel() {
+		Levels.current_level++;
 		for (int i = 0; i <= row_num; i++) {
+			drawLevel(i);
+			brickRows.add(bricks);
+			reward_rand_num = (int) Math.floor(Math.random()*(bricks.size()-1)+1);
+			bricks.get(reward_rand_num).reward_type = "UltraBall";
+		}
+	}
+	
+	void drawLevel(int i) {
+		int level = Levels.current_level;
+		if (level == 1) {
 			for (int j = 0; j <= 17; j++) {
 				Brick brick = new Brick();
 				brick.x += j*20;
@@ -75,9 +87,51 @@ public class Bricks {
 					bricks.add(brick);
 				}
 			}
-			brickRows.add(bricks);
-			reward_rand_num = (int) Math.floor(Math.random()*(bricks.size()-1)+1);
-			bricks.get(reward_rand_num).reward_type = "UltraBall";
+		}
+		else if (level == 2) {
+			for (int j = 0; j <= 17; j++) {
+				Brick brick = new Brick();
+				brick.x += (j*20)+10;
+				brick.y = i*30+50;
+				bricksRowConfig(brick, i);
+				bricks.add(brick);
+			}
+		}
+		else if (level == 3) {
+			for (int j = 0; j <= 17; j++) {
+				Brick brick = new Brick();
+				if (level_counter == 0) {
+					brick.x += 2*21;
+					level_counter = 1;
+				}
+				else {
+					brick.x += j*20;
+				}
+				brick.y = i*25+50;
+				bricksRowConfig(brick, i);
+				if ((j/1)%2 != i%2) {
+					bricks.add(brick);
+				}
+			}
+			level_counter = 0;
+		}
+		else if (level == 4) {
+			for (int j = 0; j <= 17; j++) {
+				Brick brick = new Brick();
+				brick.x += (j*20)+10;
+				brick.y = i*30+50;
+				bricksRowConfig(brick, i);
+				bricks.add(brick);
+			}
+		}
+		else {
+			for (int j = 0; j <= 10; j++) {
+				Brick brick = new Brick();
+				brick.x += (j*28)+((int) Math.floor(Math.random()*40+1)+10);
+				brick.y = (i*15+50)+((int) Math.floor(Math.random()*10+1));
+				bricksRowConfig(brick, i);
+				bricks.add(brick);
+			}
 		}
 	}
 	

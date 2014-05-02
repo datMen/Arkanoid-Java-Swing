@@ -6,7 +6,7 @@ import java.awt.Rectangle;
 public class Ball {
 	private static final int DIAMETER = 10;
 	static int default_x = 205;
-	static int default_y = 400;
+	static int default_y = 350;
 	int x = default_x;
 	int y = default_y;
 	int xa = 0;
@@ -59,7 +59,7 @@ public class Ball {
 				if (Bricks.bricks.get(brick).hits == 0) {
 					Bricks.bricks.remove(brick);
 					if (Bricks.bricks.size() == 0) {
-						game.text.start_label.setText("Congrats, You Won!");
+						Levels.startNewLevel(game);
 					}
 				}
 				else {
@@ -141,7 +141,7 @@ public class Ball {
 				ultraball_color = 0;
 			}
 		}
-		g.fillOval(x, y, 10, 10);
+		g.fillOval(x, y, DIAMETER, DIAMETER);
 	}
 	
 	public Rectangle getBounds() {

@@ -42,6 +42,7 @@ public class Bar {
 		game.bar.x = Bar.default_x;
 		game.text.lives_label.setText(""+lives);
 		game.text.start_label.setText("Lives: "+lives);
+		game.speed = Pantalla.default_speed;
 	}
 
 	public void paint(Graphics2D g) {

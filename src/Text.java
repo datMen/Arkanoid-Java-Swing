@@ -7,11 +7,14 @@ import javax.swing.SwingConstants;
 
 public class Text {
 	private Pantalla game;
-	JLabel start_label = new JLabel("Click To Start", SwingConstants.CENTER);
+	JLabel start_label = new JLabel("Level "+Levels.current_level+", Click To Start", SwingConstants.CENTER);
 	JLabel rewards_label = new JLabel("", SwingConstants.CENTER);
 	JLabel lives_text_label = new JLabel("|| Lives: ");
 	JLabel lives_label = new JLabel(""+Bar.lives);
+	JLabel level_label = new JLabel("LEVEL "+Levels.current_level);
 	Font lfont = new Font("courier", Font.PLAIN, 13);
+	Font rwdfont = new Font("courier", Font.BOLD, 15);
+	Font lvlfont = new Font("courier", Font.BOLD, 13);
     public static int menu_bar_height = 25;
 
 	public Text(Pantalla game) {
@@ -19,6 +22,7 @@ public class Text {
 		makeStartLabel();
 		makeRewardsLabel();
 		makeLivesLabel();
+		makeLevelLabel();
 	}
 	
 	void makeStartLabel() {
@@ -31,9 +35,9 @@ public class Text {
 	
 	void makeRewardsLabel() {
 		rewards_label.setVisible(true);
-		rewards_label.setBounds(0, -13, Pantalla.WIDTH, 100);
-		rewards_label.setFont(lfont);
-		rewards_label.setForeground(Color.CYAN);
+		rewards_label.setBounds(0, 125, Pantalla.WIDTH, 100);
+		rewards_label.setFont(rwdfont);
+		rewards_label.setForeground(Color.YELLOW);
 		game.add(rewards_label);
 	}
 	
@@ -45,6 +49,15 @@ public class Text {
 		game.add(lives_text_label);
 		game.add(lives_label);
 	}
+	
+	void makeLevelLabel() {
+		level_label.setVisible(true);
+		level_label.setBounds(175, -33, Pantalla.WIDTH, 100);
+		level_label.setFont(lvlfont);
+		level_label.setForeground(Color.WHITE);
+		game.add(level_label);
+	}
+	
 	public void paint(Graphics2D g) {
 	    g.setColor(Color.WHITE);
 	    g.fillRect(0, 5, Pantalla.WIDTH, 2);

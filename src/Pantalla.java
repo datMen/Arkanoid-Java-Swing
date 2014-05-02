@@ -12,8 +12,9 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class Pantalla extends JPanel {
 	public static final int WIDTH = 410;
-	public static final int HEIGHT = 500;
-	public int speed = 8;
+	public static final int HEIGHT = 450;
+	public static int default_speed = 6;
+	public int speed = default_speed;
 	public static boolean paused = false;
 	public static boolean start_game = true;
 	public static long time_counter = 0;
@@ -32,6 +33,7 @@ public class Pantalla extends JPanel {
 	Rewards rewards = new Rewards(this);
 	ListenersHandler listeners = new ListenersHandler(this);
 	Text text = new Text(this);
+	Levels levels = new Levels(this);
 
 	private void move() {
 		ball.move();
@@ -67,6 +69,7 @@ public class Pantalla extends JPanel {
 			}
 			start_game = false;
 			game.text.start_label.setText("");
+			game.text.level_label.setText("LEVEL "+Levels.current_level);
 		} 
 		else {
 			if (!paused) {
@@ -82,6 +85,7 @@ public class Pantalla extends JPanel {
 				game.ball.xa = oldballxa;
 				game.ball.ya = oldballya;
 				game.text.start_label.setText("");
+				game.text.start_label.setForeground(Color.GREEN);
 				paused = false;
 			}
 		}

@@ -40,23 +40,40 @@ public class Rewards {
 			reward.width = Bricks.Brick.width+5;
 			reward.height = Bricks.Brick.width+5;
 		}
+		else if (type == "SmallBall") {
+			reward.width = Bricks.Brick.width-8;
+			reward.height = Bricks.Brick.width-8;
+		}
 		current_rewards.add(current_reward);
 	}
 	
-	public void startReward() {
+	public void startReward(String type) {
 		Pantalla.time_counter = 0;
 		for (int i = 0; i < current_rewards.size(); i++) {
-			if (current_rewards.get(i).type == "UltraBall") {
+			if (current_rewards.get(i).type == "UltraBall" && type == current_rewards.get(i).type) {
 				current_rewards.get(i).reward_brick_on = false;
 				current_rewards.get(i).reward_on = true;
 				Ball.ultraballmode = true;
 				ultraball_time = 10;
-				break;
 			}
-			else if (current_rewards.get(i).type == "BigBall") {
+			else if (current_rewards.get(i).type == "BigBall" && type == current_rewards.get(i).type) {
 				current_rewards.remove(current_rewards.get(i));
+				if (Ball.DIAMETER == 5) {
+					Ball.DIAMETER += 5;
+				}
+				else {
+					Ball.DIAMETER += 10;
+				}
 				Ball.DIAMETER += 10;
-				break;
+			}
+			else if (current_rewards.get(i).type == "SmallBall" && type == current_rewards.get(i).type) {
+				current_rewards.remove(current_rewards.get(i));
+				if (Ball.DIAMETER <= 10 && Ball.DIAMETER > 5) {
+					Ball.DIAMETER -= 5;
+				}
+				else if (Ball.DIAMETER > 10) {
+					Ball.DIAMETER -= 10;
+				}
 			}
 		}
 	}
@@ -72,7 +89,7 @@ public class Rewards {
 				}
 			}
 		}
-		else if (type == "BigBall") {
+		else if (type == "BigBall" || type == "SmallBall") {
 			Ball.DIAMETER = 10;
 		}
 	}
@@ -95,6 +112,10 @@ public class Rewards {
 				g.fillRoundRect(current_rewards.get(i).x, current_rewards.get(i).y, current_rewards.get(i).width, current_rewards.get(i).height, 10, 10);
 			}
 			else if (current_rewards.get(i).type == "BigBall" && current_rewards.get(i).reward_brick_on) {
+				g.setColor(Color.WHITE);
+				g.fillRoundRect(current_rewards.get(i).x, current_rewards.get(i).y, current_rewards.get(i).width, current_rewards.get(i).height, 100, 100);
+			}
+			else if (current_rewards.get(i).type == "SmallBall" && current_rewards.get(i).reward_brick_on) {
 				g.setColor(Color.WHITE);
 				g.fillRoundRect(current_rewards.get(i).x, current_rewards.get(i).y, current_rewards.get(i).width, current_rewards.get(i).height, 100, 100);
 			}
@@ -122,6 +143,7 @@ public class Rewards {
 		for (int i = 0; i < current_rewards.size(); i++) {
 			if (current_rewards.get(i).reward_brick_on) {
 				if (!barCollision(i)) {
+					paintBrickReward(g);
 					if (current_rewards.get(i).y == Pantalla.HEIGHT) {
 						current_rewards.remove(current_rewards.get(i));
 					}
@@ -130,8 +152,7 @@ public class Rewards {
 					}
 				}
 				else if (barCollision(i))
-					startReward();
-				paintBrickReward(g);
+					startReward(current_rewards.get(i).type);
 			}
 		}
 	}

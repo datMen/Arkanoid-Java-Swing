@@ -9,6 +9,7 @@ public class Bricks {
 	private int row_num = 4;
 	public int reward_rand_ultraball  = 0;
 	public int reward_rand_bigball  = 0;
+	public int reward_rand_smallball  = 0;
 	public int level_counter = 0;
 	
 	private Pantalla game;
@@ -73,8 +74,10 @@ public class Bricks {
 			brickRows.add(bricks);
 			reward_rand_ultraball = (int) Math.floor(Math.random()*(bricks.size()-1)+1);
 			reward_rand_bigball = (int) Math.floor(Math.random()*(bricks.size()-1)+1);
+			reward_rand_smallball = (int) Math.floor(Math.random()*(bricks.size()-1)+1);
 			bricks.get(reward_rand_ultraball).reward_type = "UltraBall";
 			bricks.get(reward_rand_bigball).reward_type = "BigBall";
+			bricks.get(reward_rand_smallball).reward_type = "SmallBall";
 		}
 	}
 	

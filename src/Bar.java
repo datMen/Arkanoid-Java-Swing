@@ -45,6 +45,7 @@ public class Bar {
 		game.speed = Pantalla.default_speed;
 		game.rewards.stopReward("UltraBall");
 		game.rewards.stopReward("BigBall");
+		game.rewards.stopReward("SmallBall");
 	}
 
 	public void paint(Graphics2D g) {

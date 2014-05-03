@@ -11,6 +11,7 @@ public class Levels {
 		Pantalla.start_game = true;
 		game.rewards.stopReward("UltraBall");
 		game.rewards.stopReward("BigBall");
+		game.rewards.stopReward("SmallBall");
 		game.ball.xa = 0;
 		game.ball.ya = 0;
 		game.ball.x = Ball.default_x;

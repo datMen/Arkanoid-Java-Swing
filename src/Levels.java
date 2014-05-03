@@ -1,6 +1,6 @@
 
 public class Levels {
-	public static int current_level = 4;
+	public static int current_level = 0;
 	private Pantalla game;
 
 	public Levels(Pantalla game) {

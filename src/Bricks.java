@@ -92,12 +92,14 @@ public class Bricks {
 			}
 		}
 		else if (level == 2) {
-			for (int j = 0; j <= 17; j++) {
+			for (int j = 0; j <= 14; j++) {
 				Brick brick = new Brick();
-				brick.x += (j*20)+10;
+				brick.x += (j*25)+10;
 				brick.y = i*30+50;
 				bricksRowConfig(brick, i);
-				bricks.add(brick);
+				if ((j)%3 != i%3) {
+					bricks.add(brick);
+				}
 			}
 		}
 		else if (level == 3) {

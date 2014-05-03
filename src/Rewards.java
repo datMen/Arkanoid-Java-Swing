@@ -38,14 +38,21 @@ public class Rewards {
 			reward_on = true;
 			ultraball_time = 10;
 		}
+		else if (current_reward.type == "BigBall") {
+			Ball.DIAMETER += 10;
+		}
 	}
 	
-	public void stopReward() {
-		if (current_reward.type == "UltraBall") {
+	public void stopReward(String type) {
+		if (type == "UltraBall") {
 			Ball.ultraballmode = false;
 			reward_on = false;
 			game.text.rewards_label.setText("");
 		}
+		else if (type == "BigBall") {
+			Ball.DIAMETER = 10;
+		}
+		current_reward.type = "";
 	}
 	
 	public void paintBrickReward(Graphics2D g) {
@@ -64,13 +71,17 @@ public class Rewards {
 			}
 			g.fillRoundRect(current_reward.x, current_reward.y, Bricks.Brick.width+6, Bricks.Brick.height, 10, 10);
 		}
+		else if (current_reward.type == "BigBall") {
+			g.setColor(Color.WHITE);
+			g.fillRoundRect(current_reward.x, current_reward.y, Bricks.Brick.width+5, Bricks.Brick.width+5, 100, 100);
+		}
 	}
 	
 	public void paintReward() {
 		if (reward_on) {
 			if (current_reward.type == "UltraBall") {
 				if (ultraball_time == 0) {
-					stopReward();
+					stopReward("UltraBall");
 				}
 				if (ultraball_time > 0) {
 					ultraball_time--;

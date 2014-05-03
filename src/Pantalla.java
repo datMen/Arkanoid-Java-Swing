@@ -107,7 +107,7 @@ public class Pantalla extends JPanel {
 				game.repaint();
 				time_counter++;
 				if (time_counter%100 == 0) {
-					if ((time_counter/100)%20 == 0) {
+					if ((time_counter/100)%15 == 0) {
 						for (int i = 0; i < Bricks.bricks.size(); i++) {
 							Bricks.bricks.get(i).y += 10;
 						}

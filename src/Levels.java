@@ -1,6 +1,6 @@
 
 public class Levels {
-	public static int current_level = 3;
+	public static int current_level = 4;
 	private Pantalla game;
 
 	public Levels(Pantalla game) {
@@ -9,6 +9,8 @@ public class Levels {
 	
 	public static void startNewLevel(Pantalla game) {
 		Pantalla.start_game = true;
+		game.rewards.stopReward("UltraBall");
+		game.rewards.stopReward("BigBall");
 		game.ball.xa = 0;
 		game.ball.ya = 0;
 		game.ball.x = Ball.default_x;

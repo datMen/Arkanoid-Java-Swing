@@ -4,7 +4,7 @@ import java.awt.Rectangle;
 
 
 public class Ball {
-	private static final int DIAMETER = 10;
+	public static int DIAMETER = 10;
 	static int default_x = 205;
 	static int default_y = 350;
 	int x = default_x;
@@ -43,10 +43,11 @@ public class Ball {
 				Bricks.bricks.remove(brick);
 			}
 			else {
-				int ball_position = (y+DIAMETER)-(Bricks.bricks.get(brick).getTopY()+10);
-				if (ball_position == 1 || ball_position == 19) {
+				int ball_bot_position = (y+DIAMETER)-(Bricks.bricks.get(brick).getTopY()+DIAMETER);
+				int ball_top_position = (y+DIAMETER)-(Bricks.bricks.get(brick).getTopY()+10);
+				if (ball_top_position == 1 || ball_bot_position == 19) {
 					if (ya == 1)
-						ya = -1;
+						ya = -1; 
 					else if (ya == -1)
 						ya = 1;
 				}
@@ -58,13 +59,13 @@ public class Ball {
 				}
 				if (Bricks.bricks.get(brick).hits == 0) {
 					Bricks.bricks.remove(brick);
-					if (Bricks.bricks.size() == 0) {
-						Levels.startNewLevel(game);
-					}
 				}
 				else {
 					game.brick.updateHits(brick);
 				}
+			}
+			if (Bricks.bricks.size() == 0) {
+				Levels.startNewLevel(game);
 			}
 		}
 		x = x + xa;

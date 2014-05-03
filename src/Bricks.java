@@ -7,7 +7,8 @@ public class Bricks {
 	public static ArrayList<ArrayList<Brick>> brickRows = new ArrayList<ArrayList<Brick>>();
 	public static ArrayList<Brick> bricks = new ArrayList<Brick>();
 	private int row_num = 4;
-	public int reward_rand_num = 0;
+	public int reward_rand_ultraball  = 0;
+	public int reward_rand_bigball  = 0;
 	public int level_counter = 0;
 	
 	private Pantalla game;
@@ -70,8 +71,10 @@ public class Bricks {
 		for (int i = 0; i <= row_num; i++) {
 			drawLevel(i);
 			brickRows.add(bricks);
-			reward_rand_num = (int) Math.floor(Math.random()*(bricks.size()-1)+1);
-			bricks.get(reward_rand_num).reward_type = "UltraBall";
+			reward_rand_ultraball = (int) Math.floor(Math.random()*(bricks.size()-1)+1);
+			reward_rand_bigball = (int) Math.floor(Math.random()*(bricks.size()-1)+1);
+			bricks.get(reward_rand_ultraball).reward_type = "UltraBall";
+			bricks.get(reward_rand_bigball).reward_type = "BigBall";
 		}
 	}
 	
@@ -81,9 +84,9 @@ public class Bricks {
 			for (int j = 0; j <= 17; j++) {
 				Brick brick = new Brick();
 				brick.x += j*20;
-				brick.y = i*15+50;
+				brick.y = i*20+80;
 				bricksRowConfig(brick, i);
-				if (j % 2 != 0) {
+				if (j % 2 != 0 && i%2 == 0) {
 					bricks.add(brick);
 				}
 			}

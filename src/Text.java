@@ -11,9 +11,9 @@ public class Text {
 	JLabel rewards_label = new JLabel("", SwingConstants.CENTER);
 	JLabel lives_text_label = new JLabel("|| Lives: ");
 	JLabel lives_label = new JLabel(""+Bar.lives);
-	JLabel level_label = new JLabel("LEVEL "+Levels.current_level);
+	JLabel level_label = new JLabel("LEVEL "+Levels.current_level, SwingConstants.CENTER);
 	Font lfont = new Font("courier", Font.PLAIN, 13);
-	Font rwdfont = new Font("courier", Font.BOLD, 15);
+	Font rwdfont = new Font("courier", Font.BOLD, 17);
 	Font lvlfont = new Font("courier", Font.BOLD, 13);
     public static int menu_bar_height = 25;
 
@@ -35,9 +35,9 @@ public class Text {
 	
 	void makeRewardsLabel() {
 		rewards_label.setVisible(true);
-		rewards_label.setBounds(0, 125, Pantalla.WIDTH, 100);
+		rewards_label.setBounds(0, 0, Pantalla.WIDTH, 100);
 		rewards_label.setFont(rwdfont);
-		rewards_label.setForeground(Color.YELLOW);
+		rewards_label.setForeground(Color.CYAN);
 		game.add(rewards_label);
 	}
 	
@@ -52,7 +52,7 @@ public class Text {
 	
 	void makeLevelLabel() {
 		level_label.setVisible(true);
-		level_label.setBounds(175, -33, Pantalla.WIDTH, 100);
+		level_label.setBounds(0, -33, Pantalla.WIDTH, 100);
 		level_label.setFont(lvlfont);
 		level_label.setForeground(Color.WHITE);
 		game.add(level_label);
@@ -62,8 +62,6 @@ public class Text {
 	    g.setColor(Color.WHITE);
 	    g.fillRect(0, 5, Pantalla.WIDTH, 2);
 	    g.fillRect(0, menu_bar_height, Pantalla.WIDTH, 2);
-//	    g.fillRect(0, 0, Pantalla.WIDTH, 2);
-//	    g.fillRect(0, 0, Pantalla.WIDTH, 2);
 	    makeLivesLabel();
 	}
 }

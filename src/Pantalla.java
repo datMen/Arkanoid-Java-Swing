@@ -112,9 +112,7 @@ public class Pantalla extends JPanel {
 							Bricks.bricks.get(i).y += 10;
 						}
 					}
-					if (Rewards.reward_on) {
-						game.rewards.paintReward();
-					}
+					game.rewards.paintReward();
 				}
 				Thread.sleep(game.speed);
 			}

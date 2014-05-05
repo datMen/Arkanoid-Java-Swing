@@ -53,11 +53,11 @@ public class Bar {
 	}
 
 	public void paint(Graphics2D g) {
-		g.setColor(Color.GRAY);
-		g.fillRoundRect(x-15, game.getHeight()-Y, WIDTH-10, HEIGHT, 10, 10);
-		g.setColor(Color.GRAY);
-		g.fillRoundRect(x+25, game.getHeight()-Y, WIDTH-10, HEIGHT, 10, 10);
-		g.setColor(Color.WHITE);
+		g.setColor(bar_side_color);
+		g.fillRoundRect(x-(SIDE_WIDTH-3), game.getHeight()-Y, SIDE_WIDTH, HEIGHT, 10, 10);
+		g.setColor(bar_side_color);
+		g.fillRoundRect(x+(WIDTH-3), game.getHeight()-Y, SIDE_WIDTH, HEIGHT, 10, 10);
+		g.setColor(bar_main_color);
 		g.fillRect(x, game.getHeight()-Y, WIDTH, HEIGHT);
 	}
 	

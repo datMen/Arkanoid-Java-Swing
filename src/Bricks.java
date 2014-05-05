@@ -55,9 +55,16 @@ public class Bricks {
 			reward_rand_ultraball = (int) Math.floor(Math.random()*(bricks.size()-1)+1);
 			reward_rand_bigball = (int) Math.floor(Math.random()*(bricks.size()-1)+1);
 			reward_rand_smallball = (int) Math.floor(Math.random()*(bricks.size()-1)+1);
+			reward_rand_bigbar = (int) Math.floor(Math.random()*(bricks.size()-1)+1);
+			reward_rand_smallbar = (int) Math.floor(Math.random()*(bricks.size()-1)+1);
 			bricks.get(reward_rand_ultraball).reward_type = "UltraBall";
 			bricks.get(reward_rand_bigball).reward_type = "BigBall";
 			bricks.get(reward_rand_smallball).reward_type = "SmallBall";
+			bricks.get(reward_rand_bigbar).reward_type = "BigBar";
+			bricks.get(reward_rand_smallbar).reward_type = "SmallBar";
+		}
+	}
+	
 	void updateHits(int brick) {
 		int hits = bricks.get(brick).hits;
 		switch (hits) {

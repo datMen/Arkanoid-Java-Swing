@@ -6,7 +6,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 public class Text {
-	private Pantalla game;
+	public static int menu_bar_height = 25;
 	JLabel start_label = new JLabel("Level "+Levels.current_level+", Click To Start", SwingConstants.CENTER);
 	JLabel rewards_label = new JLabel("", SwingConstants.CENTER);
 	JLabel lives_text_label = new JLabel("|| Lives: ");
@@ -15,7 +15,8 @@ public class Text {
 	Font lfont = new Font("courier", Font.PLAIN, 13);
 	Font rwdfont = new Font("courier", Font.BOLD, 17);
 	Font lvlfont = new Font("courier", Font.BOLD, 13);
-    public static int menu_bar_height = 25;
+	
+    private Pantalla game;
 
 	public Text(Pantalla game) {
 		this.game = game;

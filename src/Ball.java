@@ -5,29 +5,31 @@ import java.awt.Rectangle;
 
 public class Ball {
 	public static int DIAMETER = 10;
-	static int default_x = 205;
-	static int default_y = 350;
+	public static int default_x = 205;
+	public static int default_y = 350;
 	int x = default_x;
 	int y = default_y;
 	int xa = 0;
 	int ya = 0;
 	int brick;
+	
+	public static boolean ultraballmode = false;
+	public static int ultraball_color = 0;
+	
 	private Pantalla game;
-	static boolean ultraballmode = false;
-	static int ultraball_color = 0;
 
 	public Ball(Pantalla game) {
 		this.game = game;
 	}
 
 	void move() {
-		if (x + xa < 0)
+		if (x + xa <= 0)
 			xa *= -1;
-		else if (x + xa > game.getWidth() - DIAMETER)
+		else if (x + xa >= game.getWidth() - DIAMETER)
 			xa = -xa;
-		else if (y + ya < Text.menu_bar_height)
+		else if (y + ya <= Text.menu_bar_height)
 			ya = 1;
-		else if (y + ya > game.getHeight() - DIAMETER) {
+		else if (y + ya >= game.getHeight() - DIAMETER) {
 			if (Bar.lives == 0)
 				game.gameOver();
 			else if (Bar.lives > 0) {

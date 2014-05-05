@@ -1,12 +1,14 @@
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 
 
 public class Rewards {
-	private Pantalla game;
 	public static int ultraball_time = 10;
+	
+	private Pantalla game;
 	
 	public class Reward {
 		int x;
@@ -15,9 +17,8 @@ public class Rewards {
 		int height;
 		String type;
 		boolean reward_brick_on = false;
-		public boolean reward_on = false;
+		boolean reward_on = false;
 	}
-	
 	Reward current_reward = new Reward();
 	public static ArrayList<Reward> current_rewards = new ArrayList<Reward>();
 

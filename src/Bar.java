@@ -4,12 +4,16 @@ import java.awt.Rectangle;
 
 public class Bar {
 	public static final int Y = 40;
-	private static final int WIDTH = 27;
-	private static final int HEIGHT = 10;
+	public static int WIDTH = 30;
+	public static int HEIGHT = 10;
+	public static int SIDE_WIDTH = 20;
+	public static Color bar_main_color = Color.WHITE;
+	public static Color bar_side_color = Color.GRAY;
 	public static int lives = 3;
 	public static int default_x = 197;
 	public int x = default_x;
-	int move_speed = 10;
+	public int move_speed = 10;
+
 	private Pantalla game;
 
 	public Bar(Pantalla game) {

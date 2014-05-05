@@ -6,23 +6,26 @@ import java.util.ArrayList;
 public class Bricks {
 	public static ArrayList<ArrayList<Brick>> brickRows = new ArrayList<ArrayList<Brick>>();
 	public static ArrayList<Brick> bricks = new ArrayList<Brick>();
-	private int row_num = 4;
+	public int row_num = 4;
 	public int reward_rand_ultraball  = 0;
 	public int reward_rand_bigball  = 0;
 	public int reward_rand_smallball  = 0;
+	public int reward_rand_bigbar  = 0;
+	public int reward_rand_smallbar  = 0;
 	public int level_counter = 0;
 	
 	private Pantalla game;
+
 	public Bricks(Pantalla game) {
 		this.game = game;
 		createLevel();
 	}
 	
 	public class Brick {
-		int x = 15;
-		int y = 50;
 		static final int width = 15;
 		static final int height = 10;
+		int x = 15;
+		int y = 50;
 		Color color = Color.BLACK;
 		int hits = 1;
 		String reward_type = "";
@@ -78,6 +81,22 @@ public class Bricks {
 			bricks.get(reward_rand_ultraball).reward_type = "UltraBall";
 			bricks.get(reward_rand_bigball).reward_type = "BigBall";
 			bricks.get(reward_rand_smallball).reward_type = "SmallBall";
+	void updateHits(int brick) {
+		int hits = bricks.get(brick).hits;
+		switch (hits) {
+			case 1: bricks.get(brick).color = Color.GREEN;
+				break;
+			case 2: bricks.get(brick).color = Color.YELLOW;
+				break;
+			case 3: bricks.get(brick).color = Color.LIGHT_GRAY;
+				break;
+			case 4: bricks.get(brick).color = Color.GRAY;
+				break;
+			case 5: bricks.get(brick).color = Color.DARK_GRAY;
+				break;
+		}
+		bricks.get(brick).hits -= 1;
+	}
 		}
 	}
 	

@@ -47,9 +47,7 @@ public class Bar {
 		game.text.lives_label.setText(""+lives);
 		game.text.start_label.setText("Lives: "+lives);
 		game.speed = Pantalla.default_speed;
-		game.rewards.stopReward("UltraBall");
-		game.rewards.stopReward("BigBall");
-		game.rewards.stopReward("SmallBall");
+		game.rewards.stopAllRewards();
 	}
 
 	public void paint(Graphics2D g) {

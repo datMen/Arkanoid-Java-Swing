@@ -26,7 +26,7 @@ public class Pantalla extends JPanel {
 		setVisible(true);
 		setBackground(Color.BLACK);
 	}
-
+	
 	Ball ball = new Ball(this);
 	Bar bar = new Bar(this);
 	Bricks brick = new Bricks(this);

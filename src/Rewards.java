@@ -93,6 +93,11 @@ public class Rewards {
 		else if (type == "BigBall" || type == "SmallBall") {
 			Ball.DIAMETER = 10;
 		}
+	public void stopAllRewards() {
+		stopReward("UltraBall");
+		stopReward("BigBall");
+		stopReward("SmallBall");
+		stopReward("BigBar");
 	}
 	
 	public void paintBrickReward(Graphics2D g) {

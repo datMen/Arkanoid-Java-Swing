@@ -5,8 +5,23 @@ import java.awt.Rectangle;
 import java.util.ArrayList;
 
 
+
 public class Rewards {
 	public static int ultraball_time = 10;
+	public int default_reward_ultraball_num  = 4;
+	public int default_reward_bigball_num  = 2;
+	public int default_reward_smallball_num  = 4;
+	public int default_reward_bigbar_num  = 4;
+	public int default_reward_smallbar_num  = 2;
+	int reward_ultraball_num  = default_reward_ultraball_num;
+	int reward_bigball_num  = default_reward_bigball_num;
+	int reward_smallball_num  = default_reward_smallball_num;
+	int reward_bigbar_num  = default_reward_bigbar_num;
+	int reward_smallbar_num  = default_reward_smallbar_num;
+	
+	private class Random {
+		int num = (int) Math.floor(Math.random()*(game.brick.bricks.size()-1)+1);
+	}
 	
 	private Pantalla game;
 	
@@ -24,6 +39,49 @@ public class Rewards {
 
 	public Rewards(Pantalla game) {
 		this.game = game;
+	}
+	
+	public void createAllRewards() {
+	    while (reward_ultraball_num > 0) {
+	    	Random random = new Random();
+	    	if (game.brick.bricks.get(random.num).reward_type == "") {
+	    		game.brick.bricks.get(random.num).reward_type = "UltraBall";
+			    reward_ultraball_num--;
+	    	}
+	    }
+	    while (reward_bigball_num > 0) {
+	    	Random random = new Random();
+    		if (game.brick.bricks.get(random.num).reward_type == "") {
+    			game.brick.bricks.get(random.num).reward_type = "BigBall";
+    	    	reward_bigball_num--;
+    		}
+	    }
+	    while (reward_smallball_num > 0) {
+	    	Random random = new Random();
+    		if (game.brick.bricks.get(random.num).reward_type == "") {
+    			game.brick.bricks.get(random.num).reward_type = "SmallBall";
+    	    	reward_smallball_num--;
+    		}
+	    }
+	    while (reward_bigbar_num > 0) {
+	    	Random random = new Random();
+    		if (game.brick.bricks.get(random.num).reward_type == "") {
+    			game.brick.bricks.get(random.num).reward_type = "BigBar";
+    	    	reward_bigbar_num--;
+    		}
+	    }
+	    while (reward_smallbar_num > 0) {
+	    	Random random = new Random();
+    		if (game.brick.bricks.get(random.num).reward_type == "") {
+    			game.brick.bricks.get(random.num).reward_type = "SmallBar";
+    	    	reward_smallbar_num--;
+    		}
+	    }
+	    reward_ultraball_num  = default_reward_ultraball_num;
+		reward_bigball_num  = default_reward_bigball_num;
+		reward_smallball_num  = default_reward_smallball_num;
+		reward_bigbar_num  = default_reward_bigbar_num;
+		reward_smallbar_num  = default_reward_smallbar_num;
 	}
 	
 	public void createReward(String type, int x, int y) {

@@ -5,11 +5,6 @@ import java.awt.Color;
 public class Levels {
 	public static int current_level = 0;
 	public int row_num = 4;
-	public int reward_rand_ultraball  = 0;
-	public int reward_rand_bigball  = 0;
-	public int reward_rand_smallball  = 0;
-	public int reward_rand_bigbar  = 0;
-	public int reward_rand_smallbar  = 0;
 	public int level_counter = 0;
 	
 	private Pantalla game;
@@ -37,17 +32,8 @@ public class Levels {
 		for (int i = 0; i <= row_num; i++) {
 			drawLevel(i);
 			game.brick.brickRows.add(game.brick.bricks);
-			reward_rand_ultraball = (int) Math.floor(Math.random()*(game.brick.bricks.size()-1)+1);
-			reward_rand_bigball = (int) Math.floor(Math.random()*(game.brick.bricks.size()-1)+1);
-			reward_rand_smallball = (int) Math.floor(Math.random()*(game.brick.bricks.size()-1)+1);
-			reward_rand_bigbar = (int) Math.floor(Math.random()*(game.brick.bricks.size()-1)+1);
-			reward_rand_smallbar = (int) Math.floor(Math.random()*(game.brick.bricks.size()-1)+1);
-			game.brick.bricks.get(reward_rand_ultraball).reward_type = "UltraBall";
-			game.brick.bricks.get(reward_rand_bigball).reward_type = "BigBall";
-			game.brick.bricks.get(reward_rand_smallball).reward_type = "SmallBall";
-			game.brick.bricks.get(reward_rand_bigbar).reward_type = "BigBar";
-			game.brick.bricks.get(reward_rand_smallbar).reward_type = "SmallBar";
 		}
+		game.rewards.createAllRewards();
 	}
 	
 	void drawLevel(int i) {

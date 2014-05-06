@@ -108,8 +108,8 @@ public class Pantalla extends JPanel {
 				time_counter++;
 				if (time_counter%100 == 0) {
 					if ((time_counter/100)%15 == 0) {
-						for (int i = 0; i < Bricks.bricks.size(); i++) {
-							Bricks.bricks.get(i).y += 10;
+						for (int i = 0; i < game.brick.bricks.size(); i++) {
+							game.brick.bricks.get(i).y += 10;
 						}
 					}
 					game.rewards.paintReward();

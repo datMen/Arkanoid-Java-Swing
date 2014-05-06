@@ -42,11 +42,11 @@ public class Ball {
 		}
 		else if (brickCollision()){
 			if (ultraballmode) {
-				Bricks.bricks.remove(brick);
+				game.brick.bricks.remove(brick);
 			}
 			else {
-				int ball_bot_position = (y+DIAMETER)-(Bricks.bricks.get(brick).getTopY()+DIAMETER);
-				int ball_top_position = (y+DIAMETER)-(Bricks.bricks.get(brick).getTopY()+10);
+				int ball_bot_position = (y+DIAMETER)-(game.brick.bricks.get(brick).getTopY()+DIAMETER);
+				int ball_top_position = (y+DIAMETER)-(game.brick.bricks.get(brick).getTopY()+10);
 				if (ball_top_position == 1 || ball_bot_position == 19) {
 					if (ya == 1)
 						ya = -1; 
@@ -59,14 +59,14 @@ public class Ball {
 					else if (xa < 0)
 						xa *= -1;
 				}
-				if (Bricks.bricks.get(brick).hits == 0) {
-					Bricks.bricks.remove(brick);
+				if (game.brick.bricks.get(brick).hits == 0) {
+					game.brick.bricks.remove(brick);
 				}
 				else {
 					game.brick.updateHits(brick);
 				}
 			}
-			if (Bricks.bricks.size() == 0) {
+			if (game.brick.bricks.size() == 0) {
 				Levels.startNewLevel(game);
 			}
 		}
@@ -116,13 +116,13 @@ public class Ball {
 	}
 	
 	private boolean brickCollision() {
-		for (int i = 0; i < Bricks.bricks.size(); i++) {
-			if (Bricks.bricks.get(i).getBounds().intersects(getBounds())) {
+		for (int i = 0; i < game.brick.bricks.size(); i++) {
+			if (game.brick.bricks.get(i).getBounds().intersects(getBounds())) {
 				brick = i;
-				if (Bricks.bricks.get(i).hasReward()) {
-					game.rewards.createReward(Bricks.bricks.get(i).reward_type, Bricks.bricks.get(i).x-3, Bricks.bricks.get(i).y);
+				if (game.brick.bricks.get(i).hasReward()) {
+					game.rewards.createReward(game.brick.bricks.get(i).reward_type, game.brick.bricks.get(i).x-3, game.brick.bricks.get(i).y);
 				}
-				return Bricks.bricks.get(i).getBounds().intersects(getBounds());
+				return game.brick.bricks.get(i).getBounds().intersects(getBounds());
 			}
 		}
 		return false;

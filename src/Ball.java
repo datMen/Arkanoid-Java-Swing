@@ -30,9 +30,9 @@ public class Ball {
 		else if (y + ya <= Text.menu_bar_height)
 			ya = 1;
 		else if (y + ya >= game.getHeight() - DIAMETER) {
-			if (Bar.lives == 0)
+			if (game.bar.lives == 0)
 				game.gameOver();
-			else if (Bar.lives > 0) {
+			else if (game.bar.lives > 0) {
 				Bar.looseLive(game);
 			}
 		}
@@ -46,7 +46,7 @@ public class Ball {
 			}
 			else {
 				int ball_bot_position = (y+DIAMETER)-(game.brick.bricks.get(brick).getTopY()+DIAMETER);
-				int ball_top_position = (y+DIAMETER)-(game.brick.bricks.get(brick).getTopY()+10);
+				int ball_top_position = (y+DIAMETER)-(game.brick.bricks.get(brick).getTopY()+Bricks.Brick.height);
 				if (ball_top_position == 1 || ball_bot_position == 19) {
 					if (ya == 1)
 						ya = -1; 

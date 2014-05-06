@@ -3,7 +3,7 @@ import java.awt.Color;
 
 
 public class Levels {
-	public static int current_level = 0;
+	public static int current_level = 1;
 	public int row_num = 4;
 	public int level_counter = 0;
 	
@@ -15,6 +15,7 @@ public class Levels {
 	}
 	
 	public static void startNewLevel(Pantalla game) {
+		Levels.current_level++;
 		Pantalla.start_game = true;
 		game.rewards.stopAllRewards();
 		game.ball.xa = 0;
@@ -28,7 +29,6 @@ public class Levels {
 	}
 	
 	void createLevel() {
-		Levels.current_level++;
 		for (int i = 0; i <= row_num; i++) {
 			drawLevel(i);
 			game.brick.brickRows.add(game.brick.bricks);

@@ -8,16 +8,18 @@ import java.util.ArrayList;
 
 public class Rewards {
 	public static int ultraball_time = 10;
-	public int default_reward_ultraball_num  = 4;
-	public int default_reward_bigball_num  = 2;
-	public int default_reward_smallball_num  = 4;
-	public int default_reward_bigbar_num  = 4;
+	public int default_reward_ultraball_num  = 3;
+	public int default_reward_bigball_num  = 3;
+	public int default_reward_smallball_num  = 2;
+	public int default_reward_bigbar_num  = 3;
 	public int default_reward_smallbar_num  = 2;
+	public int default_reward_extralive_num  = 1;
 	int reward_ultraball_num  = default_reward_ultraball_num;
 	int reward_bigball_num  = default_reward_bigball_num;
 	int reward_smallball_num  = default_reward_smallball_num;
 	int reward_bigbar_num  = default_reward_bigbar_num;
 	int reward_smallbar_num  = default_reward_smallbar_num;
+	int reward_extralive_num  = default_reward_extralive_num;
 	
 	private class Random {
 		int num = (int) Math.floor(Math.random()*(game.brick.bricks.size()-1)+1);
@@ -43,11 +45,11 @@ public class Rewards {
 	
 	public void createAllRewards() {
 	    while (reward_ultraball_num > 0) {
-	    	Random random = new Random();
-	    	if (game.brick.bricks.get(random.num).reward_type == "") {
-	    		game.brick.bricks.get(random.num).reward_type = "UltraBall";
-			    reward_ultraball_num--;
-	    	}
+			Random random = new Random();
+			if (game.brick.bricks.get(random.num).reward_type == "") {
+				game.brick.bricks.get(random.num).reward_type = "UltraBall";
+				reward_ultraball_num--;
+			}
 	    }
 	    while (reward_bigball_num > 0) {
 	    	Random random = new Random();
@@ -77,11 +79,19 @@ public class Rewards {
     	    	reward_smallbar_num--;
     		}
 	    }
+	    while (reward_extralive_num > 0) {
+	    	Random random = new Random();
+    		if (game.brick.bricks.get(random.num).reward_type == "") {
+    			game.brick.bricks.get(random.num).reward_type = "ExtraLive";
+    	    	reward_extralive_num--;
+    		}
+	    }
 	    reward_ultraball_num  = default_reward_ultraball_num;
 		reward_bigball_num  = default_reward_bigball_num;
 		reward_smallball_num  = default_reward_smallball_num;
 		reward_bigbar_num  = default_reward_bigbar_num;
 		reward_smallbar_num  = default_reward_smallbar_num;
+		reward_extralive_num  = default_reward_extralive_num;
 	}
 	
 	public void createReward(String type, int x, int y) {
@@ -106,6 +116,10 @@ public class Rewards {
 		else if (type == "BigBar" || type == "SmallBar") {
 			reward.width = Bricks.Brick.width+5;
 			reward.height = Bricks.Brick.height-2;
+		}
+		else if (type == "ExtraLive") {
+			reward.width = Bricks.Brick.width+6;
+			reward.height = Bricks.Brick.height;
 		}
 		current_rewards.add(current_reward);
 	}
@@ -170,6 +184,10 @@ public class Rewards {
 					Bar.bar_side_color = Color.BLUE;
 				}
 			}
+			else if (current_rewards.get(i).type == "ExtraLive" && type == current_rewards.get(i).type) {
+				current_rewards.remove(current_rewards.get(i));
+				game.bar.lives++;
+			}
 		}
 	}
 	
@@ -231,16 +249,25 @@ public class Rewards {
 			else if (current_rewards.get(i).type == "BigBar" && current_rewards.get(i).reward_brick_on) {
 				g.setColor(Color.CYAN);
 				g.fillRoundRect(current_rewards.get(i).x, current_rewards.get(i).y, current_rewards.get(i).width, current_rewards.get(i).height, 10, 10);
-			    g.setFont(new Font( "SansSerif", Font.BOLD, 10 ));
-			    g.setColor(Color.WHITE);
-			    g.drawString("<        >", current_rewards.get(i).x+-7, current_rewards.get(i).y+7);
+				g.setFont(new Font( "SansSerif", Font.BOLD, 10 ));
+				g.setColor(Color.WHITE);
+				g.drawString("<        >", current_rewards.get(i).x+-7, current_rewards.get(i).y+7);
 			}
 			else if (current_rewards.get(i).type == "SmallBar" && current_rewards.get(i).reward_brick_on) {
 				g.setColor(Color.CYAN);
 				g.fillRoundRect(current_rewards.get(i).x, current_rewards.get(i).y, current_rewards.get(i).width, current_rewards.get(i).height, 10, 10);
-			    g.setFont(new Font( "SansSerif", Font.BOLD, 10 ));
+				g.setFont(new Font( "SansSerif", Font.BOLD, 10 ));
 			    g.setColor(Color.WHITE);
 			    g.drawString(">        <", current_rewards.get(i).x+-7, current_rewards.get(i).y+7);
+			}
+			else if (current_rewards.get(i).type == "ExtraLive" && current_rewards.get(i).reward_brick_on) {
+				g.setColor(Color.PINK);
+				g.fillRoundRect(current_rewards.get(i).x, current_rewards.get(i).y, 8, 8, 100, 100);
+				g.fillRoundRect(current_rewards.get(i).x+8, current_rewards.get(i).y, 8, 8, 100, 100);
+				int xpoints[] = {current_rewards.get(i).x, current_rewards.get(i).x+8, current_rewards.get(i).x+16};
+			    int ypoints[] = {current_rewards.get(i).y+4, current_rewards.get(i).y+15, current_rewards.get(i).y+4};
+			    int npoints = 3;
+				g.fillPolygon(xpoints, ypoints, npoints);
 			}
 		}
 	}

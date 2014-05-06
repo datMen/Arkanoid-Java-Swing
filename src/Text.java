@@ -10,7 +10,7 @@ public class Text {
 	JLabel start_label = new JLabel("Level "+Levels.current_level+", Click To Start", SwingConstants.CENTER);
 	JLabel rewards_label = new JLabel("", SwingConstants.CENTER);
 	JLabel lives_text_label = new JLabel("|| Lives: ");
-	JLabel lives_label = new JLabel(""+Bar.lives);
+	JLabel lives_label = new JLabel("");
 	JLabel level_label = new JLabel("LEVEL "+Levels.current_level, SwingConstants.CENTER);
 	Font lfont = new Font("courier", Font.PLAIN, 13);
 	Font rwdfont = new Font("courier", Font.BOLD, 17);
@@ -43,11 +43,12 @@ public class Text {
 	}
 	
 	void makeLivesLabel() {
-		lives_text_label.setVisible(true); lives_label.setVisible(true); 
+		lives_text_label.setVisible(true); lives_label.setVisible(true);
 		lives_text_label.setBounds(Pantalla.WIDTH-103, -33, Pantalla.WIDTH, 100); lives_label.setBounds(Pantalla.WIDTH-22, -33, Pantalla.WIDTH, 100);
 		lives_text_label.setFont(lfont); lives_label.setFont(lfont);
 		lives_text_label.setForeground(Color.WHITE); lives_label.setForeground(Color.GREEN);
 		game.add(lives_text_label);
+		lives_label.setText(""+game.bar.lives);
 		game.add(lives_label);
 	}
 	

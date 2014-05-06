@@ -9,7 +9,7 @@ public class Bar {
 	public static int SIDE_WIDTH = 20;
 	public static Color bar_main_color = Color.WHITE;
 	public static Color bar_side_color = Color.GRAY;
-	public static int lives = 3;
+	public int lives = 3;
 	public static int default_x = 197;
 	public int x = default_x;
 	public int move_speed = 10;
@@ -37,15 +37,15 @@ public class Bar {
 	}
 	
 	public static void looseLive(Pantalla game) {
-		lives--;
+		game.bar.lives--;
 		Pantalla.start_game = true;
 		game.ball.xa = 0;
 		game.ball.ya = 0;
 		game.ball.x = Ball.default_x;
 		game.ball.y = Ball.default_y;
 		game.bar.x = Bar.default_x;
-		game.text.lives_label.setText(""+lives);
-		game.text.start_label.setText("Lives: "+lives);
+		game.text.lives_label.setText(""+game.bar.lives);
+		game.text.start_label.setText("Lives: "+game.bar.lives);
 		game.speed = Pantalla.default_speed;
 		game.rewards.stopAllRewards();
 	}

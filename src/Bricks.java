@@ -14,8 +14,8 @@ public class Bricks {
 	}
 	
 	public static class Brick {
-		static final int width = 15;
-		static final int height = 10;
+		public static int width = 15;
+		public static int height = 10;
 		int x = 15;
 		int y = 50;
 		Color color = Color.BLACK;
@@ -56,11 +56,12 @@ public class Bricks {
 		bricks.get(brick).hits -= 1;
 	}
 	
+	@SuppressWarnings("static-access")
 	public void paint(Graphics2D g) {
-		for (int i = 0; i < brickRows.size(); i++) {
-			for (int j = 0; j < brickRows.get(i).size(); j++) {
-				g.setColor(brickRows.get(i).get(j).color);
-				g.fillRect(brickRows.get(i).get(j).x, brickRows.get(i).get(j).y, brickRows.get(i).get(j).width, brickRows.get(i).get(j).height);
+		for (int i = 0; i < game.brick.brickRows.size(); i++) {
+			for (int j = 0; j < game.brick.brickRows.get(i).size(); j++) {
+				g.setColor(game.brick.brickRows.get(i).get(j).color);
+				g.fillRect(game.brick.brickRows.get(i).get(j).x, game.brick.brickRows.get(i).get(j).y, game.brick.brickRows.get(i).get(j).width, game.brick.brickRows.get(i).get(j).height);
 			}
 		}
 	}

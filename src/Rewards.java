@@ -44,6 +44,7 @@ public class Rewards {
 	}
 	
 	public void createAllRewards() {
+		// Create rewards at startLevel. We set random positions of the rewards at each level.
 	    while (reward_ultraball_num > 0) {
 			Random random = new Random();
 			if (game.brick.bricks.get(random.num).reward_type == "") {
@@ -289,7 +290,6 @@ public class Rewards {
 	}
 	
 	public void paint(Graphics2D g) {
-//		System.out.println(current_rewards);
 		for (int i = 0; i < current_rewards.size(); i++) {
 			if (current_rewards.get(i).reward_brick_on) {
 				if (!barCollision(i)) {

@@ -44,7 +44,8 @@ public class ListenersHandler {
 
 		@Override
 		public void mouseMoved(MouseEvent e) {
-			game.bar.x = e.getX();
+			// The bar will follow the mouse
+			game.bar.x = e.getX()-(Bar.WIDTH/2);
 		}
 	}
 	

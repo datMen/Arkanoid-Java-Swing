@@ -30,6 +30,7 @@ public class Levels {
 	
 	void createLevel() {
 		for (int i = 0; i <= row_num; i++) {
+			// Loop of the 1st dimension of bricks (brickRows)
 			drawLevel(i);
 			game.brick.brickRows.add(game.brick.bricks);
 		}
@@ -37,6 +38,7 @@ public class Levels {
 	}
 	
 	void drawLevel(int i) {
+		// Creating levels, each level has its own config for bricks
 		int level = Levels.current_level;
 		if (level == 1) {
 			for (int j = 0; j <= 17; j++) {

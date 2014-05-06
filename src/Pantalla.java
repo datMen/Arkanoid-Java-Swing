@@ -43,8 +43,7 @@ public class Pantalla extends JPanel {
 	public void paint(Graphics g) {
 		super.paint(g);
 		Graphics2D g2d = (Graphics2D) g;
-		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-				RenderingHints.VALUE_ANTIALIAS_ON);
+		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		ball.paint(g2d);
 		bar.paint(g2d);
 		brick.paint(g2d);
@@ -59,6 +58,7 @@ public class Pantalla extends JPanel {
 	
 	public static void startGame(Pantalla game) {
 		if (start_game) {
+			// Select a random direction for the ball at game start
 			int xdireccion = (int) Math.floor(Math.random()*2+1);
 			game.ball.ya = -1;
 			if (xdireccion == 1) {
@@ -73,6 +73,7 @@ public class Pantalla extends JPanel {
 		} 
 		else {
 			if (!paused) {
+				// Pause the game
 				oldballxa = game.ball.xa;
 				oldballya = game.ball.ya;
 				game.ball.ya = 0;
@@ -82,6 +83,7 @@ public class Pantalla extends JPanel {
 				paused = true;
 			}
 			else {
+				// Resume the game
 				game.ball.xa = oldballxa;
 				game.ball.ya = oldballya;
 				game.text.start_label.setText("");
@@ -107,6 +109,7 @@ public class Pantalla extends JPanel {
 				game.repaint();
 				time_counter++;
 				if (time_counter%100 == 0) {
+					// Move all the bricks down every 15 seconds
 					if ((time_counter/100)%15 == 0) {
 						for (int i = 0; i < game.brick.bricks.size(); i++) {
 							game.brick.bricks.get(i).y += 10;
@@ -114,6 +117,7 @@ public class Pantalla extends JPanel {
 					}
 					game.rewards.paintReward();
 				}
+				// Manage game speed
 				Thread.sleep(game.speed);
 			}
 		}

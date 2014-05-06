@@ -22,6 +22,7 @@ public class Bar {
 
 
 	void move(int direction) {
+		// left & right arrows
 		int width_margin = 5;
 		if (direction == ListenersHandler.LEFT) {
 			if (x > width_margin) {
@@ -51,10 +52,13 @@ public class Bar {
 	}
 
 	public void paint(Graphics2D g) {
+		// Left side
 		g.setColor(bar_side_color);
 		g.fillRoundRect(x-(SIDE_WIDTH-3), game.getHeight()-Y, SIDE_WIDTH, HEIGHT, 10, 10);
+		// Right side
 		g.setColor(bar_side_color);
 		g.fillRoundRect(x+(WIDTH-3), game.getHeight()-Y, SIDE_WIDTH, HEIGHT, 10, 10);
+		// Middle
 		g.setColor(bar_main_color);
 		g.fillRect(x, game.getHeight()-Y, WIDTH, HEIGHT);
 	}

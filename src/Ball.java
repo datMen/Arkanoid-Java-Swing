@@ -12,6 +12,14 @@ public class Ball {
 	int xa = 0;
 	int ya = 0;
 	int brick;
+	int ball_top_position = 0;
+	int ball_bot_position = 0;
+	int ball_right_position = 0;
+	int ball_left_position = 0;
+	int brick_top_position = 0;
+	int brick_bot_position = 0;
+	int brick_right_position = 0;
+	int brick_left_position = 0;
 	
 	public static boolean ultraballmode = false;
 	public static int ultraball_color = 0;
@@ -48,14 +56,16 @@ public class Ball {
 				game.brick.bricks.remove(brick);
 			}
 			else {
-				int ball_top_position = (y+DIAMETER)-(game.brick.bricks.get(brick).getTopY()+DIAMETER);
-				int ball_bot_position = (y+DIAMETER)-(game.brick.bricks.get(brick).getTopY()+Bricks.Brick.height);
-				// ball_bot_position == 1 means that the bottom of the ball is touching the top of the brick
-				// ball_top_position == 19 means that the top of the ball is touching the bottom of the brick
-				//
-				// @FIXME: These methods are not perfect and sometimes the ball destroy the brick
-				// because ball_top_position is 1 even if the ball is at the side not below.
-				if (ball_bot_position == 1 || ball_top_position == 19) {
+				ball_top_position = y;
+				ball_bot_position = y+DIAMETER;
+				ball_right_position = x+DIAMETER+14;
+				ball_left_position = x;
+				brick_top_position = game.brick.bricks.get(brick).y+1;
+				brick_bot_position = game.brick.bricks.get(brick).y+Bricks.Brick.height-1;
+				brick_right_position = game.brick.bricks.get(brick).x+14;
+				brick_left_position = game.brick.bricks.get(brick).x+Bricks.Brick.width;
+				// Change ball's direction
+				if ((ball_bot_position == brick_top_position || ball_top_position == brick_bot_position) && ball_right_position != brick_left_position && ball_left_position != brick_right_position) {
 					if (ya == 1)
 						ya = -1; 
 					else if (ya == -1)

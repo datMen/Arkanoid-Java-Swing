@@ -104,6 +104,7 @@ public class Pantalla extends JPanel {
 		frame.setResizable( false );
 		
 		while (true) {
+			System.out.println(paused);
 			if (!paused && !start_game) {
 				game.move();
 				game.repaint();
